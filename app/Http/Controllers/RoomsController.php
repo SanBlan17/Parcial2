@@ -25,7 +25,13 @@ class RoomsController extends Controller
      */
     public function create()
     {
-        //
+        $room = new Room();
+        $room->title = $request->title;
+        $movie->age_restriction = $request->age_restriction;
+        $movie->duration = $request->duration;
+        $movie->value = $request->value;
+        $movie->save();
+        return redirect()->route('movies.index');
     }
 
     /**
