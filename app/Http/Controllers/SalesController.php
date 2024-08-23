@@ -11,17 +11,20 @@ class SalesController extends Controller
 {
     public function index()
     {
-       ///////
-       ///////
-       ///////
-       return view('sales.index', ['sales' => $sales, 'movies' => $movies, 'rooms' => $rooms]);
+        $sales = Sale::all();
+        $movies = Movie::all();
+        $rooms = Room::all();
+        return view('sales.index', ['sales' => $sales, 'movies' => $movies, 'rooms' => $rooms]);
     }
 
     public function store(Request $request)
     {
-       ///////
-       ///////
-       ///////
+       $sale = new Sale();
+       $sale->tickets = $request->tickets;
+       $sale->movie_id = $request->movie_id;
+       $sale->room_id = $request->room_id;
+       $sale->save();
+       return redirect()->route('sales.index');
     }
 
     public function edit($id)
@@ -34,9 +37,12 @@ class SalesController extends Controller
 
     public function update(Request $request, $id)
     {
-       ///////
-       ///////
-       ///////
+       $sale = Sale::find($id);
+       $sale->tickets = $request->tickets;
+       $sale->movie_id = $request->movie_id;
+       $sale->room_id = $request->room_id;
+       $sale->save();
+       return redirect()->route('sales.index');
     }
 
     public function destroy($id)

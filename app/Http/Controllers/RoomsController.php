@@ -14,35 +14,17 @@ class RoomsController extends Controller
      */
     public function index()
     {
-        $movies = Room::all();
-        return view('rooms.index', ['rooms' => $movies]);
+        $rooms = Room::all();
+        return view('rooms.index', ['rooms' => $rooms]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $room = new Room();
-        $room->title = $request->title;
-        $movie->age_restriction = $request->age_restriction;
-        $movie->duration = $request->duration;
-        $movie->value = $request->value;
-        $movie->save();
-        return redirect()->route('movies.index');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $room = new Room();
+        $room->name = $request->name;
+        $room->ability = $request->ability;
+        $room->save();
+        return redirect()->route('rooms.index');
     }
 
     /**
@@ -51,11 +33,7 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
-    }
-
+ 
     /**
      * Show the form for editing the specified resource.
      *
@@ -64,7 +42,8 @@ class RoomsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $room = Room::find($id);
+        return view('rooms.edit', ['room' => $room]);
     }
 
     /**
@@ -76,7 +55,11 @@ class RoomsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $room = Room::find($id);
+        $room->name = $request->name;
+        $room->ability = $request->ability;
+        $room->save();
+        return redirect()->route('rooms.index');
     }
 
     /**
@@ -87,6 +70,8 @@ class RoomsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $room = Room::find($id);
+        $room->delete();
+        return redirect()->route('rooms.index');
     }
 }

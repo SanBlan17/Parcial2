@@ -14,11 +14,10 @@
         <h1>Aplicativo web para gestión de salas de cine</h1>
         <ul>
             <il><a href="{{ route('movies.index') }}" class="btn btn-warning">Gestionar películas</a></il>
-            <il><a href="" class="btn btn-warning">Gestionar salas</a></il>
-            <il><a href="" class="btn btn-warning">Gestionar ventas</a></il>
+            <il><a href="{{ route('rooms.index') }}" class="btn btn-warning">Gestionar salas</a></il>
+            <il><a href="{{ route('sales.index') }}" class="btn btn-warning">Gestionar ventas</a></il>
         </ul>
             
-        
     </div>
 </body>
 </html>
